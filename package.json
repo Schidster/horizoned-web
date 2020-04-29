@@ -7,7 +7,7 @@
     "build": "ng build",
     "build:prod": "ng build --prod --output-path=dist",
     "test": "ng test",
-    "test:ci": "ng test --progress false --watch false --code-coverage",
+    "test:ci": "ng test --progress false --watch false --browsers ChromeHeadless --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
