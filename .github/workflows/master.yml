@@ -10,7 +10,7 @@ jobs:
     name: Lint and Test
     runs-on: ubuntu-latest
     strategy:
-      max-parrallel: 4
+      max-parallel: 4
       matrix:
         node-version: [12.x]
 
