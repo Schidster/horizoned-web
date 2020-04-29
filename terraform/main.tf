@@ -76,9 +76,9 @@ resource "aws_ecs_service" "web_service" {
 }
 
 resource "aws_cloudwatch_log_group" "web" {
-  name = "horizoned-web"
+  name              = "horizoned-web"
   retention_in_days = 3
-  
+
   tags = {
     BuiltBy = "Terraform"
   }
