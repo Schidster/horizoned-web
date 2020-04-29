@@ -1,4 +1,4 @@
-name: Master CI/CD
+name: Release
 
 on:
   push:
