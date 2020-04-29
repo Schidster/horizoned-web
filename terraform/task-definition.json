@@ -1,0 +1,37 @@
+[
+  {
+    "name": "web",
+    "image": "149711720779.dkr.ecr.ap-south-1.amazonaws.com/web:latest",
+    "cpu": 250,
+    "memory": 512,
+    "memoryReservation": 400,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "hostname": null,
+    "dependsOn": null,
+    "disableNetworking": false,
+    "privileged": false,
+    "readonlyRootFilesystem": false,
+    "interactive": true,
+    "pseudoTerminal": true,
+    "dockerLabels": {
+      "version": "0.0.1dev"
+    },
+    "resourceRequirements": null,
+    "volumesFrom": null,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "horizoned-web",
+        "awslogs-region": "ap-south-1",
+        "awslogs-stream-prefix": "awslogs-horizoned"
+      }
+    },
+    "ulimits": null
+  }
+]

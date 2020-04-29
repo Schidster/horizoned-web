@@ -1,0 +1,16 @@
+# Dependencies
+node_modules
+
+# Github stuff
+.github
+
+# Git stuff
+.git
+.gitignore
+
+# Terraform stuff
+terraform
+
+# Docker stuff
+Dockerfile
+.dockerignore

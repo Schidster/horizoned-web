@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "horizoned"
+    }
+  },
+  "defaultProject": "horizoned",
+  "cli": {
+    "analytics": "5251a861-8fa9-4231-b795-7f2b91cde9d9"
+  }
 }

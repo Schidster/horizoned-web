@@ -1,4 +1,5 @@
 # Horizoned
+[![build status](https://github.com/Schidster/horizoned-web/workflows/Test/badge.svg)](https://github.com/Schidster/horizoned-web/actions)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
 
