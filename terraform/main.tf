@@ -24,7 +24,7 @@ module "bootstrap" {
 }
 
 resource "aws_ecr_repository" "web" {
-  name                 = "web"
+  name                 = "horizoned-web"
   image_tag_mutability = "IMMUTABLE"
 
   image_scanning_configuration {
