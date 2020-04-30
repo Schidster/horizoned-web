@@ -1,11 +1,9 @@
 name: Release
 
-on:
-  release:
-    types: [ created ]
+on: [push]
 
 jobs:
-  test:
+  Test:
     name: Lint and Test
     runs-on: ubuntu-latest
     strategy:
@@ -15,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
 
       - name: Setup Node ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -67,23 +65,17 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-          architecture: "x64"
-
       - name: Render Task Definition
         env:
           WEB_IMAGE: ${{ steps.build-image.outputs.image }}
-        run: python terraform/render_task.py
+        run: sh terraform/task-definition.json
 
       - name: Terraform Apply
         uses: hashicorp/terraform-github-actions@master
         with:
           tf_actions_version: 0.12.24
-          tf_actions_subcommand: 'plan'
-          tf_actions_working_dir: 'terraform'
+          tf_actions_subcommand: "plan"
+          tf_actions_working_dir: "terraform"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

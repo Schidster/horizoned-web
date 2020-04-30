@@ -1,7 +1,7 @@
 [
   {
     "name": "web",
-    "image": "149711720779.dkr.ecr.ap-south-1.amazonaws.com/web:latest",
+    "image": "web:latest",
     "cpu": 250,
     "memory": 512,
     "memoryReservation": 400,
