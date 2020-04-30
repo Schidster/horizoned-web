@@ -67,9 +67,7 @@ jobs:
       - name: Render Task Definition
         env:
           WEB_IMAGE: ${{ steps.build-image.outputs.image }}
-        run: |
-          chmod 755 terraform/task-definition.json
-          sh terraform/task-definition.json
+        run: sed "s/web:latest/$WEB_IMAGE/g" terraform/task-definition.json
 
       - name: Terraform Apply
         uses: hashicorp/terraform-github-actions@master
