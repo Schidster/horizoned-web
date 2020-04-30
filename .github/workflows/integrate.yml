@@ -4,9 +4,6 @@ on:
   push:
     paths-ignore:
       - 'terraform/**'
-  pull_request:
-    paths-ignore:
-      - 'terraform/**'
 
 jobs:
   test:
