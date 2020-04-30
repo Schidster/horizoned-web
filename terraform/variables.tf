@@ -45,5 +45,5 @@ variable "az_3" {
 
 variable "task_count" {
   description = "Desired number of running tasks."
-  default = 0
+  default     = 0
 }
