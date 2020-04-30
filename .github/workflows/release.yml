@@ -65,9 +65,11 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
       - name: Render Task Definition
-        env:
-          WEB_IMAGE: ${{ steps.build-image.outputs.image }}
-        run: sed -i "s/web:latest/$WEB_IMAGE/g" terraform/task-definition.json
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: terraform/task-definition.json
+          container-name: web
+          image: ${{ steps.build-image.outputs.image }}
 
       - name: Terraform Apply
         uses: hashicorp/terraform-github-actions@master
