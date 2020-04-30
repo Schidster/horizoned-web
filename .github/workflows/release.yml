@@ -1,6 +1,9 @@
 name: Release
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   test:
@@ -27,8 +30,8 @@ jobs:
       - name: Run tests
         run: npm run test:ci
 
-      # - name: Run e2e
-      #   run: npm run e2e
+      - name: Run e2e
+        run: npm run e2e
 
   deploy:
     name: Deploy Images and Build Infrastructure
@@ -63,13 +66,14 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-      - name: Render Task Definition
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: terraform/task-definition.json
-          container-name: web
-          image: ${{ steps.build-image.outputs.image }}
+      
+      # TODO: Do something to render the file
+      # - name: Render Task Definition
+      #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #   with:
+      #     task-definition: terraform/task-definition.json
+      #     container-name: web
+      #     image: ${{ steps.build-image.outputs.image }}
 
       - name: Terraform Apply
         uses: hashicorp/terraform-github-actions@master
