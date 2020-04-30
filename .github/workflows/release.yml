@@ -27,8 +27,8 @@ jobs:
       - name: Run tests
         run: npm run test:ci
 
-      - name: Run e2e
-        run: npm run e2e
+      # - name: Run e2e
+      #   run: npm run e2e
 
   deploy:
     name: Deploy Images and Build Infrastructure
