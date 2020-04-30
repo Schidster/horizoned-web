@@ -63,7 +63,7 @@ resource "aws_ecs_service" "web_service" {
   name                = "web-service"
   cluster             = aws_ecs_cluster.hercules.id
   task_definition     = aws_ecs_task_definition.web.arn
-  desired_count       = 1
+  desired_count       = var.task_count
   launch_type         = "FARGATE"
   scheduling_strategy = "REPLICA"
   platform_version    = "LATEST"

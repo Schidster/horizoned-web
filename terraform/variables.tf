@@ -42,3 +42,8 @@ variable "az_3" {
   description = "Availabiliy Zone 3"
   default     = "ap-south-1c"
 }
+
+variable "task_count" {
+  description = "Desired number of running tasks."
+  default = 0
+}
