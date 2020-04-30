@@ -39,22 +39,22 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       max-parrallel: 4
-      
+
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      
+
       - name: Configure AWS credentials
         uses: aws-actions/Configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
-      
+
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-      
+
       - name: Build, tag, and push api image to ECR
         id: build-image
         env:
@@ -66,16 +66,16 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-      
+
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
           architecture: "x64"
-              
+
       - name: Render Task Definition
-          env:
-            WEB_IMAGE: ${{ steps.build-image.outputs.image }}
+        env:
+          WEB_IMAGE: ${{ steps.build-image.outputs.image }}
         run: python terraform/render_task.py
 
       - name: Terraform Apply

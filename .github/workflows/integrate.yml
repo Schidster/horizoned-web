@@ -1,11 +1,16 @@
 name: Integrate
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - 'terraform/**'
+  pull_request:
+    paths-ignore:
+      - 'terraform/**'
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    if: github.ref != 'ref/heads/master'
     strategy:
       max-parallel: 4
       matrix:
