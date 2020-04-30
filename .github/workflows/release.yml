@@ -34,7 +34,7 @@ jobs:
     name: Deploy Images and Build Infrastructure
     runs-on: ubuntu-latest
     strategy:
-      max-parrallel: 4
+      max-parallel: 4
 
     steps:
       - name: Checkout
